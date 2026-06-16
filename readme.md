@@ -1,6 +1,6 @@
-# 📊 Spring Boot: Database to Excel
+# 📊 Spring Boot: Database to Excel & PDF
 
-A Spring Boot REST API application that exports employee data from a MySQL database into an Excel file using Apache POI. The generated Excel file can be downloaded directly through a REST endpoint.
+A Spring Boot REST API application that exports employee data from a MySQL database into **Excel (.xlsx)** and **PDF (.pdf)** files. The generated files can be downloaded directly through REST endpoints using Apache POI for Excel generation and OpenPDF for PDF generation.
 
 ---
 
@@ -10,7 +10,9 @@ A Spring Boot REST API application that exports employee data from a MySQL datab
 
 ✔ Generate Excel files using Apache POI
 
-✔ Download Excel files through REST APIs
+✔ Generate PDF files using OpenPDF
+
+✔ Download files through REST APIs
 
 ---
 
@@ -21,16 +23,17 @@ A Spring Boot REST API application that exports employee data from a MySQL datab
 | **Backend**          | Java 17, Spring Boot, Spring Data JPA |
 | **Database**         | MySQL                                 |
 | **Excel Processing** | Apache POI                            |
+| **PDF Generation**   | OpenPDF                               |
 | **Build Tool**       | Maven                                 |
 
 ---
 
-## 📡 REST API Endpoint
+## 📡 REST API Endpoints
 
-| Method | Endpoint | Description |
-|---------|-----------|-------------|
-| GET | `/employees/download-data` | Exports employee records from MySQL and downloads them as an Excel file |
-
+| Method | Endpoint                   | Description                                                             |
+| ------ | -------------------------- | ----------------------------------------------------------------------- |
+| GET    | `/employees/download-data` | Exports employee records from MySQL and downloads them as an Excel file |
+| GET    | `/employees/download-pdf`  | Exports employee records from MySQL and downloads them as a PDF file    |
 ---
 
 ## 🚀 How it Works
@@ -39,11 +42,15 @@ A Spring Boot REST API application that exports employee data from a MySQL datab
   <img src="dte_flow.png" alt="Database to Excel Flow" width="75%">
 </p>
 
+<p align="center">
+  <img src="dtp_flow.png" alt="Database to PDF Flow" width="75%">
+</p>
+
 ---
 
 ## 🎯 Conclusion
 
-👉 *This repository demonstrates how to export data from a MySQL database into Excel files using Spring Boot and Apache POI. It provides a practical example of database integration, Excel file generation, and file download functionality through REST APIs.*
+👉 *This repository demonstrates how to export data from a MySQL database into Excel and PDF files using Spring Boot. It provides a practical example of database integration, document generation, and file download functionality through REST APIs.*
 
 ---
 
