@@ -31,4 +31,17 @@ public class EmployeeController {
                 .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
                 .body(file);
     }
+
+    @GetMapping("/download-pdf")
+    public ResponseEntity<Resource> downloadPdf() {
+
+        String fileName = "employees.pdf";
+        ByteArrayInputStream data = employeeService.getPdfData();
+        InputStreamResource file = new InputStreamResource(data);
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + fileName)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(file);
+    }
 }

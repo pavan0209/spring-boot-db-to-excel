@@ -5,6 +5,9 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import com.lowagie.text.PageSize;
+import com.lowagie.text.*;
+import com.lowagie.text.pdf.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -47,6 +50,48 @@ public class Helper {
         } finally {
             workbook.close();
             out.close();
+        }
+    }
+
+    public static ByteArrayInputStream dataToPdf(List<Employee> employees) {
+
+        Document document = new Document(PageSize.A4);
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+        try {
+            PdfWriter.getInstance(document, out);
+            document.open();
+
+            Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
+            font.setSize(18);
+
+            Paragraph title = new Paragraph("Employee Report", font);
+            title.setAlignment(Element.ALIGN_CENTER);
+
+            document.add(title);
+            document.add(Chunk.NEWLINE);
+
+            PdfPTable table = new PdfPTable(3);
+            table.setWidthPercentage(100);
+
+            table.addCell("ID");
+            table.addCell("Name");
+            table.addCell("Salary");
+
+            for (Employee employee : employees) {
+                table.addCell(String.valueOf(employee.getEmpId()));
+                table.addCell(employee.getEmpName());
+                table.addCell(String.valueOf(employee.getEmpSalary()));
+            }
+
+            document.add(table);
+            return new ByteArrayInputStream(out.toByteArray());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            document.close();
         }
     }
 }

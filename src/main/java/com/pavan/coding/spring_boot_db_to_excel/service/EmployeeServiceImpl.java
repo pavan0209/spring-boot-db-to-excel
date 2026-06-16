@@ -20,4 +20,9 @@ public class EmployeeServiceImpl {
         List<Employee> employeeList = employeeRepository.findAll();
         return Helper.dataToExcel(employeeList);
     }
+
+    public ByteArrayInputStream getPdfData() {
+        List<Employee> employeeList = employeeRepository.findAll();
+        return Helper.dataToPdf(employeeList);
+    }
 }
